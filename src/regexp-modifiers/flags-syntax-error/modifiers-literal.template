@@ -15,4 +15,4 @@ negative:
 
 $DONOTEVALUATE();
 
-/(?/*{ modifiers }*/:a)//*{ global-modifiers }*/;
+/(?/*{ subpattern-remove-modifiers }*/:a)//*{ global-modifiers }*/;

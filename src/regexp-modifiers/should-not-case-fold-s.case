@@ -5,8 +5,8 @@ template: flags-syntax-error
 desc: Code points other than "i", "m", "s" should not be case folded to "i", "m", or "s"
 ---*/
 
-//- add-modifiers
 //- global-modifiers
 i
-//- modifiers
+//- subpattern-add-modifiers
+//- subpattern-remove-modifiers
 S

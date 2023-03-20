@@ -9,8 +9,8 @@ templates:
 desc: It is a Syntax Error if the any code point in the source text matched by the first RegularExpressionFlags is also contained in the source text matched by the second RegularExpressionFlags.
 ---*/
 
-//- add-modifiers
-\u{0073}
 //- global-modifiers
-//- modifiers
+//- subpattern-add-modifiers
+\u{0073}
+//- subpattern-remove-modifiers
 s

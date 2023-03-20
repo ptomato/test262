@@ -5,7 +5,7 @@ template: flags-syntax-error
 desc: It is a Syntax Error if the source text matched by RegularExpressionFlags contains any code point other than i, m, or s, or if it contains the same code point more than once.
 ---*/
 
-//- add-modifiers
 //- global-modifiers
-//- modifiers
+//- subpattern-add-modifiers
+//- subpattern-remove-modifiers
 y

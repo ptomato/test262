@@ -393,7 +393,7 @@ As above, exceptions that are thrown from a `then` clause are passed to a later 
 
 ## A Note on Python-based tools
 
-This project's internal tooling is built with Python. Contributors seeking to interact with these tools should begin by installing [Python version 2](https://www.python.org/) and [PIP](https://pypi.org/project/pip/). This guide includes instructions for installing packages using PIP directly, but contributors are welcomed to use utilities such as [virtualenv](https://pypi.org/project/virtualenv/), [pyenv](https://github.com/pyenv/pyenv), or [pipenv](https://pypi.org/project/pipenv/) should they have more advanced package management needs.
+This project's internal tooling is built with Python. Contributors seeking to interact with these tools should begin by installing [Python version 3](https://www.python.org/) and [PIP](https://pypi.org/project/pip/). This guide includes instructions for installing packages using PIP directly, but contributors are welcomed to use utilities such as [virtualenv](https://pypi.org/project/virtualenv/), [pyenv](https://github.com/pyenv/pyenv), or [pipenv](https://pypi.org/project/pipenv/) should they have more advanced package management needs.
 
 ## Linting
 
