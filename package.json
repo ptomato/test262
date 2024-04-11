@@ -26,5 +26,10 @@
     "test:diff:chakra": "test262-harness -t 8 --hostType=ch --hostPath=chakra $(npm run --silent diff)",
     "test:diff:javascriptcore": "test262-harness -t 8 --hostType=jsc --hostPath=javascriptcore $(npm run --silent diff)",
     "test:diff:xs": "test262-harness -t 8 --hostType=xs --hostPath=xs $(npm run --silent diff)"
+  },
+  "dependencies": {
+    "@rgrove/parse-xml": "^4.1.0",
+    "dedent": "^1.5.2",
+    "mkdirp": "^3.0.1"
   }
 }
