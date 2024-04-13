@@ -71,7 +71,7 @@ def create(args):
 
                     existing = Test(test_file)
                     existing.load()
-                    if not existing.is_generated():
+                    if not existing.is_generated() and not args.full_clobber:
                         print_error(
                             'Refusing to overwrite non-generated file: ' +
                             test.file_name)
@@ -94,6 +94,8 @@ create_parser.add_argument('-p', '--parents', action='store_true',
     help='''Create non-existent directories as necessary.''')
 create_parser.add_argument('-n', '--no-clobber', action='store_true',
     help='''Abort if any test file already exists.''')
+create_parser.add_argument('--full-clobber', action='store_true',
+    help='''Overwrite any existing files, even non-generated ones.''')
 create_parser.add_argument('-r', '--regenerate', action='store_true',
     help='''Regenerate test files that are already newer than their source data.''')
 create_parser.add_argument('cases',
