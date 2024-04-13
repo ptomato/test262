@@ -216,6 +216,18 @@ class Template:
             frontmatter = self._frontmatter(case_filename, case_values)
             body = self.expand_regions(self.source, case_values)
             return codecs.encode(frontmatter + '\n' + body, encoding)
-        return Test(self.attribs['meta']['path'] + case_name + '.js',
+
+        template_path = self.attribs['meta'].get('path', '')
+        case_path_override = case_values['meta'].get('path', '')
+        if case_path_override:
+            path = (template_path + case_path_override +
+                    os.path.basename(os.path.splitext(self.filename)[0]) +
+                    '.js')
+        elif template_path:
+            path = template_path + case_name + '.js'
+        else:
+            raise KeyError('Either template or case must specify path')
+
+        return Test(path,
             dynamic_source=get_source,
             source_file_names=(self.filename, case_filename))
