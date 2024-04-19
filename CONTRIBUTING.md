@@ -435,6 +435,7 @@ Key | Description
 `info` | see the general definition of the [`info` frontmatter key](#info). Each generated test will have `info` that is the concatenation of the test template `info` field and the test case `info` field.
 `features` | see the general definition of the [`features` frontmatter key](#features). Each generated test will have a feature list that is the union of the test template `features` and the test case `features`.
 `path` | normally the generated test file will be named after the test case file. Specifying a destination `path` for the test case instead allows naming the test file after the test template file, but placing it in the folder given by this key.
+`esid` | normally the generated test file will have an `esid` given by the test template. This value is a fallback if the test template does not provide one.
 
 ### Generated test management
 Generated files are managed using the `make.py` Python script located in the root of this repository. To use it, first install the required Python packages via the following command:

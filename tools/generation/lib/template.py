@@ -150,6 +150,8 @@ class Template:
         ]
 
         esid = self.attribs['meta'].get('esid')
+        if not esid:
+            esid = case_values['meta'].get('esid')
         if esid:
             lines.append('esid: ' + esid)
 
