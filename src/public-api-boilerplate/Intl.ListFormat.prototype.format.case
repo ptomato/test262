@@ -1,0 +1,27 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-Intl.ListFormat.prototype.format
+path: intl402/ListFormat/prototype/format/
+templates:
+  - default
+  - callable
+  - nonconstructor
+  - method
+desc: Intl.ListFormat.prototype.format
+features: [Intl.ListFormat]
+---*/
+
+//- fullname
+Intl.ListFormat.prototype.format
+//- prop
+format
+//- parent
+Intl.ListFormat.prototype
+//- class
+Intl.ListFormat
+//- length
+1
+//- valid_args
+[]
