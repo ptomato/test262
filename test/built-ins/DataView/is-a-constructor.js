@@ -1,24 +1,22 @@
-// Copyright (C) 2020 Rick Waldron. All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
-
+// This file was procedurally generated from the following sources:
+// - src/public-api-boilerplate/DataView.case
+// - src/public-api-boilerplate/constructor/is-a-constructor.template
 /*---
-esid: sec-ecmascript-standard-built-in-objects
-description: >
-  The DataView constructor implements [[Construct]]
-info: |
-  IsConstructor ( argument )
-
-  The abstract operation IsConstructor takes argument argument (an ECMAScript language value).
-  It determines if argument is a function object with a [[Construct]] internal method.
-  It performs the following steps when called:
-
-  If Type(argument) is not Object, return false.
-  If argument has a [[Construct]] internal method, return true.
-  Return false.
+description: DataView (Implements [[Construct]])
+esid: sec-built-in-function-objects
+features: [DataView, ArrayBuffer]
+flags: [generated]
 includes: [isConstructor.js]
-features: [Reflect.construct, DataView, ArrayBuffer]
+info: |
+    A built-in function object has a [[Construct]] internal method if and only
+    if it is described as a “constructor”, or some algorithm in this
+    specification explicitly sets its [[Construct]] internal method. Such a
+    [[Construct]] internal method must conform to the definition in 10.3.2.
+
 ---*/
 
-assert.sameValue(isConstructor(DataView), true, 'isConstructor(DataView) must return true');
-new DataView(new ArrayBuffer(16));
-  
+void new DataView(new ArrayBuffer(16));
+
+if (typeof Reflect.construct !== "undefined") {
+    assert(isConstructor(DataView), "DataView is a constructor");
+}

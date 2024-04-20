@@ -1,0 +1,24 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-dataview-buffer-byteoffset-bytelength
+path: built-ins/DataView/
+templates:
+  - default
+  - callable
+  - constructor
+desc: DataView
+features: [DataView, ArrayBuffer]
+---*/
+
+//- fullname
+DataView
+//- prop
+DataView
+//- parent
+$262.global
+//- length
+1
+//- valid_args
+new ArrayBuffer(16)
