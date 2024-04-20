@@ -1,0 +1,21 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-built-in-function-objects
+info: |
+    The initial value of a built-in function object's [[Prototype]] internal
+    slot is %Function.prototype%, unless otherwise specified.
+name: Prototype is %Function.Prototype%
+---*/
+assert.sameValue(
+  Object.getPrototypeOf(/*{fullname}*/),
+  Function.prototype,
+  "The prototype of /*{fullname}*/ should be %Function.prototype%"
+);
+
+assert.sameValue(
+  Object.prototype.toString.call(/*{fullname}*/),
+  "[object Function]",
+  "/*{fullname}*/ should have %Function.prototype%'s toStringTag"
+);

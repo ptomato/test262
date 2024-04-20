@@ -1,0 +1,18 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-built-in-function-objects
+info: |
+    A built-in function object has a [[Construct]] internal method if and only
+    if it is described as a “constructor”, or some algorithm in this
+    specification explicitly sets its [[Construct]] internal method. Such a
+    [[Construct]] internal method must conform to the definition in 10.3.2.
+name: Implements [[Construct]]
+includes: [isConstructor.js]
+---*/
+void new /*{fullname}*/(/*{valid_args}*/);
+
+if (typeof Reflect.construct !== "undefined") {
+    assert(isConstructor(/*{fullname}*/), "/*{fullname}*/ is a constructor");
+}

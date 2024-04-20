@@ -1,0 +1,12 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-built-in-function-objects
+info: |
+    Built-in function objects that are not constructors do not have a
+    *"prototype"* property unless otherwise specified in the description of a
+    particular function.
+name: Does not have a prototype property
+---*/
+assert(!/*{fullname}*/.hasOwnProperty("prototype"), "/*{fullname}*/ does not have a prototype property");

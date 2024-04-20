@@ -1,0 +1,14 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-typeof-operator-runtime-semantics-evaluation
+info: |
+    13. If _val_ has a [[Call]] internal slot, return *"function"*.
+name: Is a function
+---*/
+assert.sameValue(
+  typeof /*{fullname}*/,
+  "function",
+  "/*{fullname}*/ is a function"
+);

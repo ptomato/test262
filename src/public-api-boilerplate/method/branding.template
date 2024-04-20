@@ -1,0 +1,50 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+name: Throw a TypeError if the receiver is invalid
+---*/
+const /*{prop}*/ = /*{fullname}*/;
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply(undefined, [/*{valid_args}*/]);
+}, "receiver is undefined");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply(null, [/*{valid_args}*/]);
+}, "receiver is null");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply(true, [/*{valid_args}*/]);
+}, "receiver is a boolean");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply("", [/*{valid_args}*/]);
+}, "receiver is a string");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply(1, [/*{valid_args}*/]);
+}, "receiver is a number");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply({}, [/*{valid_args}*/]);
+}, "receiver is a plain object");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply(/*{class}*/, [/*{valid_args}*/]);
+}, "receiver is /*{class}*/");
+
+assert.throws(TypeError, function () {
+    /*{prop}*/.apply(/*{parent}*/, [/*{valid_args}*/]);
+}, "receiver is /*{parent}*/");
+
+if (typeof Symbol !== "undefined") {
+    assert.throws(TypeError, function () {
+        /*{prop}*/.apply(Symbol(), [/*{valid_args}*/]);
+    }, "receiver is a symbol");
+}
+if (typeof BigInt !== "undefined") {
+    assert.throws(TypeError, function () {
+        /*{prop}*/.apply(BigInt(1), [/*{valid_args}*/]);
+    }, "receiver is a bigint");
+}

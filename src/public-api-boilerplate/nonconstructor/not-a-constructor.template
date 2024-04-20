@@ -1,0 +1,19 @@
+// Copyright 2024 Igalia S.L. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+esid: sec-built-in-function-objects
+info: |
+    Built-in function objects that are not identified as constructors do not
+    implement the [[Construct]] internal method unless otherwise specified in
+    the description of a particular function.
+name: Does not implement [[Construct]], is not new-able
+includes: [isConstructor.js]
+---*/
+assert.throws(TypeError, function () {
+    new /*{fullname}*/(/*{valid_args}*/);
+}, "Applying the new operator to /*{fullname}*/ throws a TypeError");
+
+if (typeof Reflect.construct !== "undefined") {
+    assert(!isConstructor(/*{fullname}*/), "/*{fullname}*/ is not a constructor");
+}
