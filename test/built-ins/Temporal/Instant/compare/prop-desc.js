@@ -1,18 +1,19 @@
-// Copyright (C) 2021 Igalia, S.L. All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
-
+// This file was procedurally generated from the following sources:
+// - src/public-api-boilerplate/Temporal.Instant.compare.case
+// - src/public-api-boilerplate/default/prop-desc.template
 /*---
-esid: sec-temporal.instant.compare
-description: The "compare" property of Temporal.Instant
-includes: [propertyHelper.js]
+description: Temporal.Instant.compare (Property descriptor has the correct attributes)
+esid: sec-ecmascript-standard-built-in-objects
 features: [Temporal]
----*/
+flags: [generated]
+includes: [propertyHelper.js]
+info: |
+    Every other data property described in clauses 19 through 28 and in
+    Annex B.2 has the attributes { [[Writable]]: *true*,
+    [[Enumerable]]: *false*, [[Configurable]]: *true* } unless otherwise
+    specified.
 
-assert.sameValue(
-  typeof Temporal.Instant.compare,
-  "function",
-  "`typeof Instant.compare` is `function`"
-);
+---*/
 
 verifyProperty(Temporal.Instant, "compare", {
   writable: true,

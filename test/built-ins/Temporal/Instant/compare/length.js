@@ -1,25 +1,28 @@
-// Copyright (C) 2020 Igalia, S.L. All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
-
+// This file was procedurally generated from the following sources:
+// - src/public-api-boilerplate/Temporal.Instant.compare.case
+// - src/public-api-boilerplate/default/length.template
 /*---
-esid: sec-temporal.instant.compare
-description: Temporal.Instant.compare.length is 2
-info: |
-    Every built-in function object, including constructors, has a "length" property whose value is
-    an integer. Unless otherwise specified, this value is equal to the largest number of named
-    arguments shown in the subclause headings for the function description. Optional parameters
-    (which are indicated with brackets: [ ]) or rest parameters (which are shown using the form
-    «...name») are not included in the default argument count.
-
-    Unless otherwise specified, the "length" property of a built-in function object has the
-    attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
-includes: [propertyHelper.js]
+description: Temporal.Instant.compare (Value and descriptor of function's length property)
+esid: sec-built-in-function-objects
 features: [Temporal]
+flags: [generated]
+includes: [propertyHelper.js]
+info: |
+    Every built-in function object, including constructors, has a *"length"*
+    property whose value is a non-negative integral Number. Unless otherwise
+    specified, this value is the number of required parameters shown in the
+    subclause heading for the function description. Optional parameters and rest
+    parameters are not included in the parameter count.
+
+    Unless otherwise specified, the *"length"* property of a built-in function
+    object has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*,
+    [[Configurable]]: *true* }.
+
 ---*/
 
 verifyProperty(Temporal.Instant.compare, "length", {
   value: 2,
   writable: false,
   enumerable: false,
-  configurable: true,
+  configurable: true
 });

@@ -1,20 +1,23 @@
-// Copyright (C) 2021 Igalia, S.L. All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
-
+// This file was procedurally generated from the following sources:
+// - src/public-api-boilerplate/Temporal.Instant.compare.case
+// - src/public-api-boilerplate/nonconstructor/not-a-constructor.template
 /*---
-esid: sec-temporal.instant.compare
-description: Temporal.Instant.compare does not implement [[Construct]], is not new-able
-info: |
-    Built-in function objects that are not identified as constructors do not implement the
-    [[Construct]] internal method unless otherwise specified in the description of a particular
-    function.
+description: Temporal.Instant.compare (Does not implement [[Construct]], is not new-able)
+esid: sec-built-in-function-objects
+features: [Temporal]
+flags: [generated]
 includes: [isConstructor.js]
-features: [Reflect.construct, Temporal]
+info: |
+    Built-in function objects that are not identified as constructors do not
+    implement the [[Construct]] internal method unless otherwise specified in
+    the description of a particular function.
+
 ---*/
 
-assert.throws(TypeError, () => {
-  new Temporal.Instant.compare();
-}, "Calling as constructor");
+assert.throws(TypeError, function () {
+    new Temporal.Instant.compare();
+}, "Applying the new operator to Temporal.Instant.compare throws a TypeError");
 
-assert.sameValue(isConstructor(Temporal.Instant.compare), false,
-  "isConstructor(Temporal.Instant.compare)");
+if (typeof Reflect.construct !== "undefined") {
+    assert(!isConstructor(Temporal.Instant.compare), "Temporal.Instant.compare is not a constructor");
+}
