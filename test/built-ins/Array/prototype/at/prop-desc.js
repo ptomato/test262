@@ -1,30 +1,22 @@
-// Copyright (C) 2020 Rick Waldron. All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
+// This file was procedurally generated from the following sources:
+// - src/public-api-boilerplate/Array.prototype.at.case
+// - src/public-api-boilerplate/default/prop-desc.template
 /*---
-esid: sec-array.prototype.at
-description: >
-  Property type and descriptor.
-info: |
-  Array.prototype.at( index )
-
-  17 ECMAScript Standard Built-in Objects
-includes: [propertyHelper.js]
+description: Array.prototype.at (Property descriptor has the correct attributes)
+esid: sec-ecmascript-standard-built-in-objects
 features: [Array.prototype.at]
+flags: [generated]
+includes: [propertyHelper.js]
+info: |
+    Every other data property described in clauses 19 through 28 and in
+    Annex B.2 has the attributes { [[Writable]]: *true*,
+    [[Enumerable]]: *false*, [[Configurable]]: *true* } unless otherwise
+    specified.
+
 ---*/
-assert.sameValue(
-  typeof Array.prototype.at,
-  'function',
-  'The value of `typeof Array.prototype.at` is expected to be "function"'
-);
 
-assert.sameValue(
-  typeof Array.prototype.at,
-  'function',
-  'The value of `typeof Array.prototype.at` is expected to be "function"'
-);
-
-verifyProperty(Array.prototype, 'at', {
-  enumerable: false,
+verifyProperty(Array.prototype, "at", {
   writable: true,
-  configurable: true
+  enumerable: false,
+  configurable: true,
 });
