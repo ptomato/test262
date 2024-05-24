@@ -17,7 +17,7 @@ var added = hourBeforeDstStart.add({ hours: 1 });
 assert.sameValue(added.hour, 3);
 var diff = hourBeforeDstStart.until(added, { largestUnit: "hours" });
 assert.sameValue(`${ diff }`, "PT1H");
-assert.sameValue(`${ diff }`, `${ added.since(hourBeforeDstStart, { largestUnit: "hours" }) }`);
+assert.sameValue(`${ diff }`, `${ hourBeforeDstStart.until(added, { largestUnit: "hours" }) }`);
 var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ hourBeforeDstStart }`);
 
@@ -26,7 +26,7 @@ var added = hourBeforeDstStart.add({ hours: 2 });
 assert.sameValue(added.hour, 4);
 var diff = hourBeforeDstStart.until(added, { largestUnit: "hours" });
 assert.sameValue(`${ diff }`, "PT2H");
-assert.sameValue(`${ diff }`, `${ added.since(hourBeforeDstStart, { largestUnit: "hours" }) }`);
+assert.sameValue(`${ diff }`, `${ hourBeforeDstStart.until(added, { largestUnit: "hours" }) }`);
 var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ hourBeforeDstStart }`);
 
@@ -39,7 +39,7 @@ assert.sameValue(added.hour, 3);
 assert.sameValue(added.minute, 30);
 var diff = hourBeforeDstStart.until(added, { largestUnit: "hours" });
 assert.sameValue(`${ diff }`, "PT1H30M");
-assert.sameValue(`${ diff }`, `${ added.since(hourBeforeDstStart, { largestUnit: "hours" }) }`);
+assert.sameValue(`${ diff }`, `${ hourBeforeDstStart.until(added, { largestUnit: "hours" }) }`);
 var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ hourBeforeDstStart }`);
 
@@ -76,7 +76,7 @@ var end = start.add({
 assert.sameValue(end.day, 29);
 assert.sameValue(end.hour, 22);
 assert.sameValue(end.minute, 0);
-var diff = end.since(start, { largestUnit: "days" });
+var diff = start.until(end, { largestUnit: "days" });
 assert.sameValue(`${ diff }`, "-P2DT1H");
 var undo = start.add(diff);
 assert.sameValue(`${ undo }`, `${ end }`);

@@ -14,9 +14,8 @@ var later = Temporal.ZonedDateTime.from("2019-10-29T10:46:38.271986102-03:00[-03
   "minutes",
   "seconds"
 ].forEach(largestUnit => {
-  var diff = later.since(earlier, { largestUnit });
-assert.sameValue(`${ earlier.since(later, { largestUnit }) }`, `${ diff.negated() }`);
-assert.sameValue(`${ earlier.until(later, { largestUnit }) }`, `${ diff }`);
+  var diff = earlier.until(later, { largestUnit });
+assert.sameValue(`${ later.until(earlier, { largestUnit }) }`, `${ diff.negated() }`);
 // difference symmetrical with regard to negative durations
     assert(earlier.add(diff).equals(later));
     assert(later.add(diff.negated()).equals(earlier));
@@ -31,7 +30,7 @@ assert.sameValue(`${ earlier.until(later, { largestUnit }) }`, `${ diff }`);
   "seconds"
 ].forEach(largestUnit => {
   var diff1 = earlier.until(later, { largestUnit });
-  var diff2 = later.since(earlier, { largestUnit });
+  var diff2 = later.until(earlier, { largestUnit });
   assert(earlier.add(diff1).equals(later));
-  assert(later.add(diff2.negated()).equals(earlier));
+  assert(later.add(diff2).equals(earlier));
 });

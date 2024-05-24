@@ -122,7 +122,7 @@ function createOptionsObserver({ smallestUnit = "months", largestUnit = "auto", 
 actual.splice(0);
 
 // code path that skips RoundDuration:
-instance.since(otherYearMonthPropertyBag, createOptionsObserver({ smallestUnit: "months", roundingIncrement: 1 }));
+instance.until(otherYearMonthPropertyBag, createOptionsObserver({ smallestUnit: "months", roundingIncrement: 1 }));
 assert.compareArray(actual, expected, "order of operations with no rounding");
 actual.splice(0); // clear
 

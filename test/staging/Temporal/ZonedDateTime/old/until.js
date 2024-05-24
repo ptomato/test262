@@ -9,16 +9,6 @@ features: [Temporal]
 
 var zdt = Temporal.ZonedDateTime.from("1976-11-18T15:23:30.123456789+01:00[+01:00]");
 
-// zdt.until(later) === later.since(zdt) with default options
-var later = Temporal.ZonedDateTime.from({
-  year: 2016,
-  month: 3,
-  day: 3,
-  hour: 18,
-  timeZone: "+01:00"
-});
-assert.sameValue(`${ zdt.until(later) }`, `${ later.since(zdt) }`);
-
 // casts argument
 assert.sameValue(`${ zdt.until({
   year: 2019,

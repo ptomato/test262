@@ -11,7 +11,6 @@ var earlier = Temporal.Instant.from("1969-07-24T16:50:35.123456789Z");
 var later = Temporal.Instant.from("2019-10-29T10:46:38.271986102Z");
 var diff = earlier.until(later);
 assert.sameValue(`${ later.until(earlier) }`, `${ diff.negated() }`)
-assert.sameValue(`${ later.since(earlier) }`, `${ diff }`)
 assert(earlier.add(diff).equals(later))
 assert(later.add(diff.negated()).equals(earlier))
 var feb20 = Temporal.Instant.from("2020-02-01T00:00Z");

@@ -3,7 +3,7 @@
 
 /*---
 esid: sec-temporal.plaindatetime
-description: Testing combinations of since, until, add, and negated
+description: Testing combinations of until, add, and negated
 features: [Temporal]
 includes: [temporalHelpers.js]
 ---*/
@@ -13,16 +13,11 @@ const later = new Temporal.PlainDateTime(2019, 10, 29, 10, 46, 38, 271, 986, 102
 const units = ["years", "months", "weeks", "days", "hours", "minutes", "seconds"];
 
 units.forEach((largestUnit) => {
-  const diff = later.since(earlier, { largestUnit });
+  const diff = earlier.until(later, { largestUnit });
   TemporalHelpers.assertDurationsEqual(
-    earlier.since(later, { largestUnit }),
+    later.until(earlier, { largestUnit }),
     diff.negated(),
-    `(${earlier}).since(${later}) == (${later}).since(${earlier}).negated()`
-  );
-  TemporalHelpers.assertDurationsEqual(
-    earlier.until(later, { largestUnit }),
-    diff,
-    `(${earlier}).until(${later}) == (${later}).since(${earlier})`
+    `(${later}).until(${earlier}) == (${earlier}).until(${later}).negated()`
   );
   assert.sameValue(
     earlier.add(diff).equals(later),

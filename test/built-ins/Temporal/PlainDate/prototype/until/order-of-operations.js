@@ -122,7 +122,7 @@ const identicalPropertyBag = TemporalHelpers.propertyBagObserver(actual, {
   calendar: TemporalHelpers.calendarObserver(actual, "other.calendar"),
 }, "other");
 
-instance.since(identicalPropertyBag, createOptionsObserver());
+instance.until(identicalPropertyBag, createOptionsObserver());
 assert.compareArray(actual, expected, "order of operations with identical dates");
 actual.splice(0); // clear
 

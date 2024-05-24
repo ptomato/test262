@@ -28,7 +28,7 @@ function decimalToISO(year, month, day, overflow = "constrain") {
 function isoToDecimal(date) {
   var {isoYear, isoMonth, isoDay} = date.getISOFields();
   var isoDate = new Temporal.PlainDate(isoYear, isoMonth, isoDay);
-  var {days} = isoDate.since(new Temporal.PlainDate(1970, 1, 1), { largestUnit: "days" });
+  var {days} = new Temporal.PlainDate(1970, 1, 1).until(isoDate, { largestUnit: "days" });
   var year = Math.floor(days / 100);
   days %= 100;
   return {
