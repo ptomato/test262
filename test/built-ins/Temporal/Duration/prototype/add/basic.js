@@ -29,3 +29,47 @@ TemporalHelpers.assertDuration(duration4.add({ minutes: 61, nanoseconds: 3722000
 TemporalHelpers.assertDuration(duration1.add({ month: 1, days: 1 }),
   0, 0, 0, 2, 0, 5, 0, 0, 0, 0,
   "incorrectly-spelled properties are ignored");
+
+// Subtraction
+const duration = Temporal.Duration.from({ days: 3, hours: 1, minutes: 10 });
+TemporalHelpers.assertDuration(duration.add({ days: -1, minutes: -5 }),
+  0, 0, 0, 2, 1, 5, 0, 0, 0, 0);
+TemporalHelpers.assertDuration(duration.add(duration.negated()),
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+TemporalHelpers.assertDuration(duration.add({ days: -3 }),
+  0, 0, 0, 0, 1, 10, 0, 0, 0, 0);
+TemporalHelpers.assertDuration(duration.add({ minutes: -10 }),
+  0, 0, 0, 3, 1, 0, 0, 0, 0, 0);
+TemporalHelpers.assertDuration(duration.add({ minutes: -15 }),
+  0, 0, 0, 3, 0, 55, 0, 0, 0, 0);
+TemporalHelpers.assertDuration(duration.add({ seconds: -30 }),
+  0, 0, 0, 3, 1, 9, 30, 0, 0, 0);
+
+const d = Temporal.Duration.from({
+  minutes: 100,
+  seconds: 100,
+  milliseconds: 2000,
+  microseconds: 2000,
+  nanoseconds: 2000
+});
+const less = Temporal.Duration.from({
+  minutes: -10,
+  seconds: -10,
+  milliseconds: -500,
+  microseconds: -500,
+  nanoseconds: -500
+});
+TemporalHelpers.assertDuration(d.add(less),
+  0, 0, 0, 0, 0, 91, 31, 501, 501, 500);
+const tenDays = Temporal.Duration.from('P10D');
+const tenMinutes = Temporal.Duration.from('PT10M');
+TemporalHelpers.assertDuration(tenDays.add({ days: -15 }),
+  0, 0, 0, -5, 0, 0, 0, 0, 0, 0);
+TemporalHelpers.assertDuration(tenMinutes.add({ minutes: -15 }),
+  0, 0, 0, 0, 0, -5, 0, 0, 0, 0);
+const d1 = Temporal.Duration.from({ hours: 1, seconds: 60 });
+TemporalHelpers.assertDuration(d1.add({ minutes: -122 }),
+  0, 0, 0, 0, -1, -1, 0, 0, 0, 0);
+const d2 = Temporal.Duration.from({ hours: 1, seconds: 3721 });
+TemporalHelpers.assertDuration(d2.add({ minutes: -61, nanoseconds: -3722000000001 }),
+  0, 0, 0, 0, 0, -1, -1, 0, 0, -1);

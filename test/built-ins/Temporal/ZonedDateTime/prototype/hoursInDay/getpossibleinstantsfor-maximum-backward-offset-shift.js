@@ -36,7 +36,7 @@ class Shift24Hour extends Temporal.TimeZone {
     const utc = new Temporal.TimeZone("UTC");
     const [utcInstant] = utc.getPossibleInstantsFor(plainDateTime);
     return [
-      utcInstant.subtract({ hours: 12 }),
+      utcInstant.add({ hours: -12 }),
       utcInstant.add({ hours: 12 })
     ];
   }

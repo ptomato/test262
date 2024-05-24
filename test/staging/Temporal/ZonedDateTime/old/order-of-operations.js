@@ -46,34 +46,3 @@ var d = Temporal.Duration.from({
 });
 var options = { overflow: "reject" };
 assert.throws(RangeError, () => zdt.add(d, options));
-
-// order of operations: subtract / none
-var zdt = Temporal.ZonedDateTime.from("2020-03-31T00:00-08:00[-08:00]");
-var d = Temporal.Duration.from({
-  months: 1,
-  days: 1
-});
-var options = undefined;
-var result = zdt.subtract(d, options);
-assert.sameValue(result.toString(), "2020-02-28T00:00:00-08:00[-08:00]");
-assert.sameValue(breakoutUnits("subtract", zdt, d, options).toString(), result.toString());
-
-// order of operations: subtract / constrain
-var zdt = Temporal.ZonedDateTime.from("2020-03-31T00:00-08:00[-08:00]");
-var d = Temporal.Duration.from({
-  months: 1,
-  days: 1
-});
-var options = { overflow: "constrain" };
-var result = zdt.subtract(d, options);
-assert.sameValue(result.toString(), "2020-02-28T00:00:00-08:00[-08:00]");
-assert.sameValue(breakoutUnits("subtract", zdt, d, options).toString(), result.toString());
-
-// order of operations: subtract / reject
-var zdt = Temporal.ZonedDateTime.from("2020-03-31T00:00-08:00[-08:00]");
-var d = Temporal.Duration.from({
-  months: 1,
-  days: 1
-});
-var options = { overflow: "reject" };
-assert.throws(RangeError, () => zdt.subtract(d, options));

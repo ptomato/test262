@@ -27,7 +27,7 @@ const fiftyDays12Hours = 50n * 86400_000_000_000n + 12n * 3600_000_000_000n;
 {
   const tz = new (class extends Temporal.TimeZone {
     getPossibleInstantsFor(dateTime) {
-      return super.getPossibleInstantsFor(dateTime.subtract({ days: 3 }));
+      return super.getPossibleInstantsFor(dateTime.add({ days: -3 }));
     }
   })("UTC");
 

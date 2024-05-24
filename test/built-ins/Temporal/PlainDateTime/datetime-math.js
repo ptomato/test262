@@ -3,7 +3,7 @@
 
 /*---
 esid: sec-temporal.plaindatetime
-description: Testing combinations of since, until, add, subtract, and negated
+description: Testing combinations of since, until, add, and negated
 features: [Temporal]
 includes: [temporalHelpers.js]
 ---*/
@@ -26,16 +26,6 @@ units.forEach((largestUnit) => {
   );
   assert.sameValue(
     earlier.add(diff).equals(later),
-    true,
-    `(${earlier}).add(${diff}) == (${later})`
-  );
-  assert.sameValue(
-    later.subtract(diff).equals(earlier),
-    true,
-    `(${later}).subtract(${diff}) == (${earlier})`
-  );
-  assert.sameValue(
-    earlier.subtract(diff.negated()).equals(later),
     true,
     "symmetrical with regard to negative durations (1)"
   );

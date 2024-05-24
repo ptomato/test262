@@ -33,7 +33,7 @@ class ShiftLonger24Hour extends Temporal.TimeZone {
     const utc = new Temporal.TimeZone("UTC");
     const [utcInstant] = utc.getPossibleInstantsFor(plainDateTime);
     return [
-      utcInstant.subtract({ hours: 12, nanoseconds: 1 }),
+      utcInstant.add({ hours: -12, nanoseconds: -1 }),
       utcInstant.add({ hours: 12 }),
       utcInstant, // add a third value in case the implementation doesn't sort
     ];

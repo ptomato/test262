@@ -855,9 +855,9 @@ var TemporalHelpers = {
         if (dateTime.toPlainDate().equals("2030-01-01") && dateTime.hour === 0) {
           retval = [];
         } else if (dateTime.toPlainDate().equals("2030-01-03") && dateTime.hour === 0) {
-          retval.push(retval[0].subtract({ hours: 1 }));
+          retval.push(retval[0].add({ hours: -1 }));
         } else if (dateTime.year === 2030 && dateTime.month === 1 && dateTime.day >= 1 && dateTime.day <= 2) {
-          retval[0] = retval[0].subtract({ hours: 1 });
+          retval[0] = retval[0].add({ hours: -1 });
         }
 
         this.getPossibleInstantsForReturns.push(retval);
@@ -1750,10 +1750,10 @@ var TemporalHelpers = {
         if (this._shiftNanoseconds > 0) {
           if (this._isBeforeShift(instant)) return [instant];
           if (instant.epochNanoseconds < this._epoch2) return [];
-          return [instant.subtract(this._shift)];
+          return [instant.add(this._shift.negated())];
         }
         if (instant.epochNanoseconds < this._epoch2) return [instant];
-        const shifted = instant.subtract(this._shift);
+        const shifted = instant.add(this._shift.negated());
         if (this._isBeforeShift(instant)) return [instant, shifted];
         return [shifted];
       }

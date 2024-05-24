@@ -81,7 +81,7 @@ for (const test of tests) {
   assert.sameValue(date.monthsInYear, 12);
   assert.sameValue(date.dayOfYear, 1);
   const startOfNextYear = date.with({ year: year + 1 });
-  const lastDayOfThisYear = startOfNextYear.subtract({ days: 1 });
+  const lastDayOfThisYear = startOfNextYear.add({ days: -1 });
   assert.sameValue(lastDayOfThisYear.dayOfYear, daysInYear);
   const dateMonth12 = date.with({ month: 12 });
   assert.sameValue(dateMonth12.daysInMonth, daysInMonth12);

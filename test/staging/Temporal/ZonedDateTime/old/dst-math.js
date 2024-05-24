@@ -18,7 +18,7 @@ assert.sameValue(added.hour, 3);
 var diff = hourBeforeDstStart.until(added, { largestUnit: "hours" });
 assert.sameValue(`${ diff }`, "PT1H");
 assert.sameValue(`${ diff }`, `${ added.since(hourBeforeDstStart, { largestUnit: "hours" }) }`);
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ hourBeforeDstStart }`);
 
 // add 2 hours to get to DST start +1
@@ -27,7 +27,7 @@ assert.sameValue(added.hour, 4);
 var diff = hourBeforeDstStart.until(added, { largestUnit: "hours" });
 assert.sameValue(`${ diff }`, "PT2H");
 assert.sameValue(`${ diff }`, `${ added.since(hourBeforeDstStart, { largestUnit: "hours" }) }`);
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ hourBeforeDstStart }`);
 
 // add 1.5 hours to get to 0.5 hours after DST start
@@ -40,7 +40,7 @@ assert.sameValue(added.minute, 30);
 var diff = hourBeforeDstStart.until(added, { largestUnit: "hours" });
 assert.sameValue(`${ diff }`, "PT1H30M");
 assert.sameValue(`${ diff }`, `${ added.since(hourBeforeDstStart, { largestUnit: "hours" }) }`);
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ hourBeforeDstStart }`);
 
 // Samoa date line change (add): 10:00PM 29 Dec 2011 -> 11:00PM 31 Dec 2011
@@ -56,22 +56,22 @@ assert.sameValue(added.hour, 23);
 assert.sameValue(added.minute, 0);
 var diff = start.until(added, { largestUnit: "days" });
 assert.sameValue(`${ diff }`, "P2DT1H");
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ start }`);
 
 // Samoa date line change (subtract): 11:00PM 31 Dec 2011 -> 10:00PM 29 Dec 2011
 var dayAfterSamoaDateLineChangeAbs = timeZone.getInstantFor(new Temporal.PlainDateTime(2011, 12, 31, 23));
 var start = dayAfterSamoaDateLineChangeAbs.toZonedDateTimeISO(timeZone);
-var skipped = start.subtract({
-  days: 1,
-  hours: 1
+var skipped = start.add({
+  days: -1,
+  hours: -1
 });
 assert.sameValue(skipped.day, 31);
 assert.sameValue(skipped.hour, 22);
 assert.sameValue(skipped.minute, 0);
-var end = start.subtract({
-  days: 2,
-  hours: 1
+var end = start.add({
+  days: -2,
+  hours: -1
 });
 assert.sameValue(end.day, 29);
 assert.sameValue(end.hour, 22);
@@ -89,7 +89,7 @@ assert.sameValue(added.hour, 3);
 assert.sameValue(added.minute, 30);
 var diff = start.until(added, { largestUnit: "days" });
 assert.sameValue(`${ diff }`, "P1D");
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ start }`);
 
 // 2:30 day before DST start -> 3:30 day of DST start
@@ -110,11 +110,11 @@ assert.sameValue(added.hour, 4);
 assert.sameValue(added.minute, 30);
 var diff = start.until(added, { largestUnit: "days" });
 assert.sameValue(`${ diff }`, "PT2H");
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ start }`);
 
 // 2:00 day before DST starts -> 3:00 day DST starts
-var start = hourBeforeDstStart.subtract({ days: 1 }).add({ hours: 1 });
+var start = hourBeforeDstStart.add({ days: -1 }).add({ hours: 1 });
 var added = start.add({ days: 1 });
 assert.sameValue(added.day, 2);
 assert.sameValue(added.hour, 3);
@@ -132,18 +132,18 @@ assert.sameValue(added.hour, 2);
 assert.sameValue(added.minute, 0);
 var diff = start.until(added, { largestUnit: "days" });
 assert.sameValue(`${ diff }`, "P1DT1H");
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ start }`);
 
 // 12:00AM day DST starts -> (add 24 hours) -> 1:00AM day after DST starts
-var start = hourBeforeDstStart.subtract({ hours: 1 });
+var start = hourBeforeDstStart.add({ hours: -1 });
 var added = start.add({ hours: 24 });
 assert.sameValue(added.day, 3);
 assert.sameValue(added.hour, 1);
 assert.sameValue(added.minute, 0);
 var diff = start.until(added, { largestUnit: "days" });
 assert.sameValue(`${ diff }`, "P1DT1H");
-var undo = added.subtract(diff);
+var undo = added.add(diff.negated());
 assert.sameValue(`${ undo }`, `${ start }`);
 
 // Difference can return day length > 24 hours

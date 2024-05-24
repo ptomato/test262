@@ -11,7 +11,7 @@ class TimeZone extends Temporal.TimeZone {
   #calls = 0;
   getPossibleInstantsFor(dateTime) {
     if (++this.#calls === 2) {
-      return super.getPossibleInstantsFor(dateTime.withCalendar("iso8601").subtract({ days: 1 }));
+      return super.getPossibleInstantsFor(dateTime.withCalendar("iso8601").add({ days: -1 }));
     }
     return super.getPossibleInstantsFor(dateTime);
   }

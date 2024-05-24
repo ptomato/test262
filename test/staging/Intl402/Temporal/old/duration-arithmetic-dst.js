@@ -13,25 +13,14 @@ features: [Temporal]
 // hour. We have TemporalHelpers.springForwardFallBackTimeZone which is
 // sufficient to test this for Temporal.Duration.prototype.add, and
 // Temporal.Duration.prototype.round, but it's impractical to replicate all the
-// TZDB data for testing it with other methods such as subtract() where we need
+// TZDB data for testing it with other methods such as total() where we need
 // to calculate to the _next_ transition
 
 var skippedHourDay = Temporal.ZonedDateTime.from("2019-03-10T00:00[America/Vancouver]");
 var repeatedHourDay = Temporal.ZonedDateTime.from("2019-11-03T00:00[America/Vancouver]");
 var inRepeatedHour = Temporal.ZonedDateTime.from("2019-11-03T01:00-07:00[America/Vancouver]");
-
-// subtract()
-
 var oneDay = new Temporal.Duration(0, 0, 0, 1);
-assert.sameValue(`${ Temporal.Duration.from({
-  days: 127,
-  hours: 1
-}).subtract(oneDay, { relativeTo: inRepeatedHour }) }`, "P126DT1H");
 var hours24 = new Temporal.Duration(0, 0, 0, 0, 24);
-assert.sameValue(`${ Temporal.Duration.from({
-  days: 127,
-  hours: 1
-}).subtract(hours24, { relativeTo: inRepeatedHour }) }`, "P126D");
 
 // total()
 var totalDays = Temporal.Duration.from({
@@ -64,7 +53,7 @@ assert.sameValue(`${ hours25.round({
   relativeTo: "2019-11-03T00:00[America/Vancouver]"
 }) }`, "P1D");
 assert.sameValue(
-  `${ oneDay.subtract(hours24, { relativeTo: "2019-11-03T00:00[America/Vancouver]" }) }`,
+  `${ oneDay.add(hours24.negated(), { relativeTo: "2019-11-03T00:00[America/Vancouver]" }) }`,
   "PT1H"
 );
 assert.sameValue(oneDay.total({

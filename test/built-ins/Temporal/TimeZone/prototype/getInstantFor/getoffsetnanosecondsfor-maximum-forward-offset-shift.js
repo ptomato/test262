@@ -32,7 +32,7 @@ class Shift24Hour extends Temporal.TimeZone {
     const [utcInstant] = super.getPossibleInstantsFor(plainDateTime);
     const { year, month, day } = plainDateTime;
 
-    if (year < 1970) return [utcInstant.subtract({ hours: 12 })];
+    if (year < 1970) return [utcInstant.add({ hours: -12 })];
     if (year === 1970 && month === 1 && day === 1) return [];
     return [utcInstant.add({ hours: 12 })];
   }

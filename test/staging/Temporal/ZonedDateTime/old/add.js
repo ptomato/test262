@@ -9,17 +9,17 @@ features: [Temporal]
 
 var zdt = Temporal.ZonedDateTime.from("1969-12-25T12:23:45.678901234+00:00[UTC]");
 // cross epoch in ms
-  var one = zdt.subtract({
-    hours: 240,
-    nanoseconds: 800
+  var one = zdt.add({
+    hours: -240,
+    nanoseconds: -800
   });
   var two = zdt.add({
     hours: 240,
     nanoseconds: 800
   });
-  var three = two.subtract({
-    hours: 480,
-    nanoseconds: 1600
+  var three = two.add({
+    hours: -480,
+    nanoseconds: -1600
   });
   var four = one.add({
     hours: 480,
