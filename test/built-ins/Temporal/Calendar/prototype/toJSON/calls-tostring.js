@@ -3,7 +3,7 @@
 
 /*---
 esid: sec-temporal.calendar.prototype.tojson
-description: toJSON() returns the internal slot value
+description: toJSON() calls toString()
 includes: [compareArray.js, temporalHelpers.js]
 features: [Temporal]
 ---*/
@@ -19,5 +19,8 @@ TemporalHelpers.observeProperty(actual, calendar, "toString", function () {
 });
 
 const result = calendar.toJSON();
-assert.sameValue(result, "iso8601", "toJSON gets the internal slot value");
-assert.compareArray(actual, [], "should not invoke any observable operations");
+assert.sameValue(result, "gregory", "toJSON gets the value from toString");
+assert.compareArray(actual, [
+  "get toString",
+  "call calendar.toString"
+], "should call toString");

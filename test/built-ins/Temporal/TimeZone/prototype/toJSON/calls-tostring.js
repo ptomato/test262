@@ -3,7 +3,7 @@
 
 /*---
 esid: sec-temporal.timezone.prototype.tojson
-description: toJSON() returns the internal slot value
+description: toJSON() calls toString()
 includes: [compareArray.js, temporalHelpers.js]
 features: [Temporal]
 ---*/
@@ -19,5 +19,8 @@ TemporalHelpers.observeProperty(actual, timeZone, "toString", function () {
 });
 
 const result = timeZone.toJSON();
-assert.sameValue(result, "UTC", "toJSON gets the internal slot value");
-assert.compareArray(actual, [], "should not invoke any observable operations");
+assert.sameValue(result, "Etc/TAI", "toJSON gets the value from toString");
+assert.compareArray(actual, [
+  "get toString",
+  "call timeZone.toString",
+], "should call toString");
