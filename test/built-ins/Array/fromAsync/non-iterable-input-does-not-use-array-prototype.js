@@ -4,15 +4,13 @@
 /*---
 esid: sec-array.fromasync
 description: Non-iterable input does not use Array.prototype
-includes: [compareArray.js, asyncHelpers.js]
+includes: [compareArray.js, asyncHelpers.js, wellKnownIntrinsicObjects.js]
 flags: [async]
 features: [Array.fromAsync]
 ---*/
 
 asyncTest(async function () {
-const arrayIterator = [].values();
-const IntrinsicArrayIteratorPrototype =
-Object.getPrototypeOf(arrayIterator);
+const IntrinsicArrayIteratorPrototype = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 const intrinsicArrayIteratorPrototypeNext =
 IntrinsicArrayIteratorPrototype.next;
 

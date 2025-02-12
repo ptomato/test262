@@ -12,11 +12,11 @@ info: |
     This property has the attributes { [[Writable]]: false, [[Enumerable]]:
     false, [[Configurable]]: true }.
 features: [Symbol.iterator, Symbol.toStringTag]
-includes: [propertyHelper.js]
+includes: [propertyHelper.js, wellKnownIntrinsicObjects.js]
 es6id: 22.1.5.2.2
 ---*/
 
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
+var ArrayIteratorProto = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 
 assert.sameValue("Array Iterator", ArrayIteratorProto[Symbol.toStringTag]);
 

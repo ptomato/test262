@@ -20,11 +20,11 @@ info: |
           a. Let values be ? IteratorToList(? GetIteratorFromMethod(firstArgument, usingIterator)).
           b. Perform ? InitializeTypedArrayFromList(O, values).
         ...
-includes: [testTypedArray.js]
+includes: [testTypedArray.js, wellKnownIntrinsicObjects.js]
 features: [TypedArray]
 ---*/
 
-let ArrayIteratorPrototype = Object.getPrototypeOf([].values());
+let ArrayIteratorPrototype = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 let values;
 
 // Modify the built-in ArrayIteratorPrototype `next` method.

@@ -11,15 +11,16 @@ info: |
   2. ReturnIfAbrupt(O).
   3. Return CreateArrayIterator(O, "key").
 features: [Symbol.iterator]
+includes: [wellKnownIntrinsicObjects.js]
 ---*/
 
 var obj = {
   length: 2
 };
 var iter = Array.prototype.keys.call(obj);
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
 
 assert.sameValue(
-  Object.getPrototypeOf(iter), ArrayIteratorProto,
+  Object.getPrototypeOf(iter),
+  getWellKnownIntrinsicObject('%ArrayIteratorPrototype%'),
   'The prototype of [].keys() is %ArrayIteratorPrototype%'
 );

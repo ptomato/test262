@@ -10,11 +10,11 @@ info: |
 
   ...
   3. Return CreateArrayIterator(O, "key+value").
-includes: [testBigIntTypedArray.js]
+includes: [testBigIntTypedArray.js, wellKnownIntrinsicObjects.js]
 features: [BigInt, Symbol.iterator, TypedArray]
 ---*/
 
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
+var ArrayIteratorProto = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 
 testWithBigIntTypedArrayConstructors(function(TA) {
   var sample = new TA([0n, 42n, 64n]);

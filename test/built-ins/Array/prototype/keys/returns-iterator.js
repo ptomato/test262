@@ -19,12 +19,13 @@ info: |
   ...
   6. Return iterator.
 features: [Symbol.iterator]
+includes: [wellKnownIntrinsicObjects.js]
 ---*/
 
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
 var iter = [].keys();
 
 assert.sameValue(
-  Object.getPrototypeOf(iter), ArrayIteratorProto,
+  Object.getPrototypeOf(iter),
+  getWellKnownIntrinsicObject('%ArrayIteratorPrototype%'),
   'The prototype of [].keys() is %ArrayIteratorPrototype%'
 );

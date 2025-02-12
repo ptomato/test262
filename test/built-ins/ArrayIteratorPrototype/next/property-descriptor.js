@@ -6,11 +6,11 @@ esid: sec-%arrayiteratorprototype%.next
 description: >
     The method should exist on the ArrayIterator prototype, and it should be
     writable and configurable, but not enumerable.
-includes: [propertyHelper.js]
+includes: [propertyHelper.js, wellKnownIntrinsicObjects.js]
 features: [Symbol.iterator]
 ---*/
 
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
+var ArrayIteratorProto = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 
 verifyProperty(ArrayIteratorProto, "next", {
   writable: true,

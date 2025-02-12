@@ -19,11 +19,11 @@ info: |
     Unless otherwise specified, the length property of a built-in Function
     object has the attributes { [[Writable]]: false, [[Enumerable]]: false,
     [[Configurable]]: true }.
-includes: [propertyHelper.js]
+includes: [propertyHelper.js, wellKnownIntrinsicObjects.js]
 features: [Symbol.iterator]
 ---*/
 
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
+var ArrayIteratorProto = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 
 verifyProperty(ArrayIteratorProto.next, "length", {
   value: 0,

@@ -7,8 +7,9 @@ description: >
   The @@toStringTag attribute should be defined directly on the prototype.
 es6id: 22.1.5.2.2
 features: [Symbol.iterator, Symbol.toStringTag]
+includes: [wellKnownIntrinsicObjects.js]
 ---*/
 
-var ArrayIteratorProto = Object.getPrototypeOf([][Symbol.iterator]());
+var ArrayIteratorProto = getWellKnownIntrinsicObject('%ArrayIteratorPrototype%');
 
 assert.sameValue("Array Iterator", ArrayIteratorProto[Symbol.toStringTag]);
