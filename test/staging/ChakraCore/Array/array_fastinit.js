@@ -1,0 +1,28 @@
+// Copyright (C) Microsoft. All rights reserved.
+// SPDX-License-Identifier: MIT
+/*---
+esid: null
+description: ChakraCore implementation test Array/array_fastinit.js
+includes: [chakracore/adaptor.js, compareArray.js]
+flags: [noStrict]
+---*/
+function InitPolymorphicFunctionArray(args) {
+}
+function test0() {
+    var IntArr2 = new Array();
+    IntArr2[5] = 4294967295;
+    IntArr2[0] = 2.53425738368173E+18;
+    IntArr2[IntArr2.length] = 3;
+    function bar0() {
+    }
+    InitPolymorphicFunctionArray(new Array(bar0));;
+    WScript.Echo(IntArr2.slice(0, 23).reduce(function (prev, curr) { { return prev + curr; } }));
+};
+test0();
+test0();
+test0();
+
+chakraCoreAdaptor.verifyTest(`2534257387976697300
+2534257387976697300
+2534257387976697300
+`);

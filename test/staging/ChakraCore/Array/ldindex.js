@@ -1,0 +1,29 @@
+// Copyright (C) Microsoft. All rights reserved.
+// SPDX-License-Identifier: MIT
+/*---
+esid: null
+description: ChakraCore implementation test Array/ldindex.js
+includes: [chakracore/adaptor.js]
+flags: [noStrict]
+---*/
+var base = new Array(100);
+base[5] = 50;
+
+var A = new Array(100);
+A[10] = 100;
+Array.prototype[5] = 50;
+
+function foo(arr, i)
+{
+    i = arr[i];
+    if (i != 50)
+    WScript.Echo("FAILED");
+    return i;
+}
+
+for (var i = 0; i < 1000; i++)
+    foo(A, 5);
+
+if (foo(A, 5) == 50) WScript.Echo("Passed");
+
+chakraCoreAdaptor.verifyTest();

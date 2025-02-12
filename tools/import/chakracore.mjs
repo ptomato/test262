@@ -8,6 +8,23 @@ import url from 'node:url';
 import util from 'node:util';
 
 const knownFailures = {
+  Array: [
+    // https://github.com/chakra-core/ChakraCore/issues/5033
+    "Array_TypeConfusion_bugs.js",
+    "protoLookupWithGetters.js",
+
+    // Depends on implementation-defined toLocaleString output
+    "toLocaleString.js",
+
+    // TODO
+    // SpiceBtreeMemoryCorruption.js - passes but log isn't recognized
+    // array_slice2.js - times out
+    // array_sort.js - needs LoadScript(samethread) semantics
+    // bug1065362.js - times out
+    // bug945376SegLeftPlusSizeGreaterThanMaxArrayLen.js - times out
+    // bug945376SizeBoundStartSeg.js - times out
+    // shift_unshift.js - times out
+  ],
 };
 
 // This script lives in tools/import/
