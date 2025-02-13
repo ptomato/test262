@@ -25,6 +25,38 @@ const knownFailures = {
     // bug945376SizeBoundStartSeg.js - times out
     // shift_unshift.js - times out
   ],
+  Basics: [
+    // TODO: file bug, property `b` re-added out of order
+    "DeleteProperty1.js",
+
+    // TODO: file bug, Math.LOG2E has the wrong value
+    "flags.js",
+
+    // TODO: change test to not depend on error message, or at least prefix the
+    // error type so it gets picked up by the heuristic
+    "scan.js",
+
+    // https://github.com/chakra-core/ChakraCore/issues/5513
+    // Depends on implementation-specific extension,
+    // globalThis.toString() === '[object global]'
+    "scopedaccessors.js",
+
+    // Depends on implementation-defined Function.prototype.toString output
+    // (implementations are not required to prefix 'get ' and 'set ')
+    "ScriptFunctionToStrings.js",
+
+    // Uses internal ChakraCore tracing API
+    // TODO: can this be detected from the test file?
+    "VerifyParserState.js",
+    "VerifySkipNestedDeferred.js",
+
+    // TODO
+    // Labels.js - requires WScript.LoadModule
+    // SpecialSymbolCapture.js - not sure whose bug this is yet
+    // With-defer-block-scope.js - not sure whose bug this is yet
+    // bug650104.js - tests need to be wrapped in try-catch
+    // cross_site_accessor_main.js - requires WScript.LoadScriptFile
+  ],
 };
 
 // This script lives in tools/import/
