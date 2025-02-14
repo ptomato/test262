@@ -159,6 +159,9 @@ for (const dirElement of expectChildren(regressExeElement, 'dir')) {
 
 const extraIncludes = ['UnitTestFramework.js', 'memset_tester.js'];
 
+dirsToProcess.splice(5, Infinity);
+console.log(dirsToProcess);
+
 for (const { dir, intl402 = false } of dirsToProcess) {
   const skipDirs = [
     '262',

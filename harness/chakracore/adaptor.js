@@ -126,11 +126,14 @@ var chakraCoreAdaptor = {
 
       // The following prevents actual and expected from being iterated and evaluated
       // more than once unless absolutely necessary.
-      const format = compareArray.format;
       if (!compareArray(logLines, expectedLines)) {
-        throw new Test262Error(
-          `Test log did not match expected log. Expected: ${format(expectedLines)} Actual: ${format(logLines)}`
-        );
+        let message;
+        try {
+          require("node:assert").deepStrictEqual(logLines, expectedLines, "Test log did not match expected log");
+        } catch (e) {
+          message = e.message;
+        }
+        throw new Test262Error(message);
       }
 
       return;
