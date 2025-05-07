@@ -31,6 +31,12 @@ relativeTo = "1970-01-01T00:00:00-00:44:30[Africa/Monrovia]";
 result = action(relativeTo);
 TemporalHelpers.assertDateDuration(result, 1, 0, 0, 1, "unrounded HH:MM:SS is accepted in string offset");
 
+relativeTo = "1970-01-01T00:00:00-00:44:40[Africa/Monrovia]";
+assert.throws(RangeError, () => action(relativeTo), "wrong :SS not accepted in string offset");
+
+relativeTo = "1970-01-01T00:00:00-00:45:00[Africa/Monrovia]";
+assert.throws(RangeError, () => action(relativeTo), "rounded HH:MM:SS not accepted in string offset");
+
 relativeTo = "1970-01-01T00:00+00:44:30.123456789[+00:45]";
 assert.throws(RangeError, () => action(relativeTo), "rounding is not accepted between ISO offset and time zone");
 

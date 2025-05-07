@@ -18,7 +18,19 @@ TemporalHelpers.assertDuration(result, 0, 0, 0, 0, 1, 29, 0, 0, 0, 0, "Unrounded
 
 assert.throws(
   RangeError,
-  () => instance.until("1970-01-01T00:44:30+00:44:30[+00:45"),
+  () => instance.until("1970-01-01T00:00:00-00:44:40[Africa/Monrovia]"),
+  "wrong :SS not accepted in string offset"
+);
+
+assert.throws(
+  RangeError,
+  () => instance.until("1970-01-01T00:00:00-00:45:00[Africa/Monrovia]"),
+  "rounded HH:MM:SS not accepted in string offset"
+);
+
+assert.throws(
+  RangeError,
+  () => instance.until("1970-01-01T00:44:30+00:44:30[+00:45]"),
   "minute rounding not supported for offset time zones"
 );
 

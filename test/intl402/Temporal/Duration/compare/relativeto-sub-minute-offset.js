@@ -23,5 +23,11 @@ relativeTo = "1970-01-01T00:00:00-00:44:30[Africa/Monrovia]";
 result = action(relativeTo);
 assert.sameValue(result, 0, "unrounded HH:MM:SS is accepted in string offset");
 
+relativeTo = "1970-01-01T00:00:00-00:44:40[Africa/Monrovia]";
+assert.throws(RangeError, () => action(relativeTo), "wrong :SS not accepted in string offset");
+
+relativeTo = "1970-01-01T00:00:00-00:45:00[Africa/Monrovia]";
+assert.throws(RangeError, () => action(relativeTo), "rounded HH:MM:SS not accepted in string offset");
+
 relativeTo = { year: 1970, month: 1, day: 1, offset: "+00:45", timeZone: "Africa/Monrovia" };
 assert.throws(RangeError, () => action(relativeTo), "rounded HH:MM not accepted as offset in property bag");

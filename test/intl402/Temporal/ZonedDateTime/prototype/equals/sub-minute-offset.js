@@ -11,10 +11,22 @@ const expectedNanoseconds = BigInt((44 * 60 + 30) * 1e9);
 const instance = new Temporal.ZonedDateTime(expectedNanoseconds, "Africa/Monrovia");
 
 let result = instance.equals("1970-01-01T00:00:00-00:45[Africa/Monrovia]");
-assert.sameValue(result, true, "UTC offset rounded to minutes is accepted");
+assert.sameValue(result, true, "UTC HH:MM offset rounded to minutes is accepted");
 
 result = instance.equals("1970-01-01T00:00:00-00:44:30[Africa/Monrovia]");
 assert.sameValue(result, true, "Unrounded sub-minute UTC offset also accepted");
+
+assert.throws(
+  RangeError,
+  () => instance.equals("1970-01-01T00:00:00-00:44:40[Africa/Monrovia]"),
+  "wrong :SS not accepted in string offset"
+);
+
+assert.throws(
+  RangeError,
+  () => instance.equals("1970-01-01T00:00:00-00:45:00[Africa/Monrovia]"),
+  "rounded HH:MM:SS not accepted in string offset"
+);
 
 assert.throws(
   RangeError,
