@@ -4,10 +4,12 @@
 /*---
 esid: sec-temporal.duration.prototype.round
 description: RangeError thrown if relativeTo is a string with the wrong format
+includes: [temporalHelpers.js]
 features: [Temporal]
 ---*/
 
-['bad string', '15:30:45.123456', 'iso8601', 'UTC', 'P1YT1H'].forEach((relativeTo) => {
+const invalidStrings = TemporalHelpers.ISO.relativeToStringsInvalid();
+invalidStrings.forEach((relativeTo) => {
   const duration = new Temporal.Duration(0, 0, 0, 31);
   assert.throws(RangeError, () => duration.round({ largestUnit: "months", relativeTo }));
 });
